@@ -5,5 +5,16 @@
   "main": "index.js",
   "repository": "https://github.com/fmenegossi/AppySlackBot",
   "author": "Codaisseur #14 graduates",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon --inspect .",
+    "seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7",
+    "nodemon": "^1.15.1",
+    "superagent": "^3.8.2"
+  }
 }
