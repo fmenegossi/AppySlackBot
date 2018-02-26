@@ -1,0 +1,9 @@
+{
+  "name": "AppySlackBot",
+  "version": "1.0.0",
+  "description": "Slack Bot to monitor changes in APIs made by AppyThings",
+  "main": "index.js",
+  "repository": "https://github.com/fmenegossi/AppySlackBot",
+  "author": "Codaisseur #14 graduates",
+  "license": "MIT"
+}
