@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/fmenegossi/AppySlackBot",
   "author": "Codaisseur #14 graduates",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "superagent": "^3.8.2"
+  }
 }
