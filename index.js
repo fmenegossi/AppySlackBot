@@ -1,18 +1,12 @@
 const express = require('express')
-
-const http = require('http')
-
-const getApis= require('./db/seed')
-
+const getApis = require('./db/seed')
 const dotenv = require('dotenv')
 
 dotenv.config()
 
 const port = process.env.PORT || 3030
-
 const app = express()
 const server = http.Server(app)
-
 
 const getData = function() {
   getApis.getApis(function(data){
