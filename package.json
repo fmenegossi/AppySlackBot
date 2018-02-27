@@ -1,11 +1,23 @@
 {
-  "dependencies": {
-    "dotenv": "^5.0.1",
-    "express": "^4.16.2",
-    "http": "^0.0.0",
-    "mongoose": "^5.0.7",
-    "passport-local-mongoose": "^4.5.0",
-    "promise": "^8.0.1",
-    "superagent": "^3.8.2"
-  }
+ "name": "AppySlackBot",
+ "version": "1.0.0",
+ "description": "Slack Bot to monitor changes in APIs made by AppyThings",
+ "main": "index.js",
+ "repository": "https://github.com/fmenegossi/AppySlackBot",
+ "author": "Codaisseur #14 graduates",
+ "license": "MIT",
+ "scripts": {
+   "start": "node .",
+   "dev": "nodemon --inspect .",
+   "seed": "node db/seed.js"
+ },
+ "dependencies": {
+   "dotenv": "^5.0.0",
+   "express": "^4.16.2",
+   "mongoose": "^5.0.7",
+   "nodemon": "^1.15.1",
+   "promise": "^8.0.1",
+   "superagent": "^3.8.2",
+   "http": "^0.0.0"
+ }
 }
