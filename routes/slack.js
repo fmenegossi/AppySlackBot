@@ -31,9 +31,7 @@ const sendToSlack = (update) =>{
         // console.log(foundApi.changed_at,api.changed_at,'changed at')
         if(err){throw err}
         if(foundApi == null){
-          Api.create({
-            name:api.name,created_at:api.created_at,created_by:api.created_by,changed_at:api.changed_at,changed_by:api.changed_by
-          })
+          Api.create(api)
           .then((api) => {
             console.log('new api')
             let update = 'Api :'+api.name+'\n was changed by:'+api.changed_by+'\n on:'+api.changed_at
