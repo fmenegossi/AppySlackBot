@@ -1,5 +1,4 @@
 const express = require('express')
-const http = require('http')
 require('dotenv').config()
 const config = require('./config/config')
 const http = require('http')
@@ -11,12 +10,14 @@ const slackBotUrl = config.SLACKBOT_URL
 const interval = config.INTERVAL
 const getApis = require('./lib/getData')
 const readData = require('./routes/slack.js')
+const slashRouter = require('./routes/slash')
 
 
 const port = process.env.PORT || 3030
 const app = express()
 const server = http.Server(app)
 
+app.use(slashRouter)
 const getData = function() {
   getApis.getApis(username,password,tokenUrl,dataUrl)
   .then( function (data){
