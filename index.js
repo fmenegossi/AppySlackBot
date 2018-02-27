@@ -1,12 +1,16 @@
 const express = require('express')
-
 const http = require('http')
+require('dotenv').config()
+const config = require('./config/config')
 
-const getApis= require('./db/seed')
+const username = process.env.SAP_EMAIL
+const password = process.env.SAP_PASSWORD
+const tokenUrl = config.TOKEN_URL
+const dataUrl = config.DATA_URL
 
-const dotenv = require('dotenv')
+const getApis = require('./lib/getData')
 
-dotenv.config()
+
 
 const port = process.env.PORT || 3030
 
@@ -15,9 +19,11 @@ const server = http.Server(app)
 
 
 const getData = function() {
-  getApis.getApis(function(data){
-      console.log('data : ', data.d.results)
+  getApis.getApis(username,password,tokenUrl,dataUrl)
+  .then( function (data){
+      console.log('data',data)
   })
+
 }
 
 //setInterval( getData ,3000)
