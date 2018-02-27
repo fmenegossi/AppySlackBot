@@ -8,5 +8,10 @@
   "license": "MIT",
   "scripts": {
     "seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "mongoose": "^5.0.7",
+    "passport-local-mongoose": "^4.5.0",
+    "superagent": "^3.8.2"
   }
 }

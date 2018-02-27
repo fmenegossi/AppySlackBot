@@ -8,7 +8,6 @@ const metadataSchema = new Schema({
 })
 
 const resultSchema = new Schema({
-  metadata:     metadataSchema ,
   changed_at:   { type: Date, required: true },
   changed_by:   { type: String, required: true },
   created_at:   { type: Date, default: Date.now },
