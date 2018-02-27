@@ -1,6 +1,5 @@
 const seed = require('../db/seed.json')
-const {Result} = require('../models')
-const moment = require('moment')
+const {Api} = require('../models')
 
 let reworkedSeed = seed.d.results.map(api => {
   var object = {}
@@ -14,7 +13,7 @@ let reworkedSeed = seed.d.results.map(api => {
 })
 console.log('reworkedSeed',reworkedSeed)
 reworkedSeed.map(api =>{
-  Result.create({
+  Api.create({
     name:api.name,created_at:api.created_at,created_by:api.created_by,changed_at:api.changed_at,changed_by:api.changed_by
     }
   ).then((api)=>{

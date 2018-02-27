@@ -1,11 +1,11 @@
 const request = require('superagent')
-const slackBot = 'https://hooks.slack.com/services/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'
-const {Result,User } = require('../models')
-const data = require('../db/seed2.json')
+const {Api,User } = require('../models')
+// const data = require('../db/seed2.json')
+const {SLACKBOT_URL} = require('../config/config.js')
 
 const sendToSlack = (update) =>{
   return request
-    .post(slackBot)
+    .post(SLACKBOT_URL)
     .send({'text':update})
     .then((res)=>{
       console.log('res')})
@@ -15,7 +15,6 @@ const sendToSlack = (update) =>{
 }
 
 const readData = (data) => {
-
   let apis = data.d.results.map(api =>  {
     var object = {}
     object.name = api.name
@@ -23,19 +22,31 @@ const readData = (data) => {
     object.changed_by = api.life_cycle.changed_by
     return object
   })
-
+  console.log(apis,"APIS")
   apis.map(api => {
-    Result.findOne({'name':api.name},function(err,foundApi){
-     if(foundApi.changed_at.toString()===api.changed_at.toString()){
+    Api.findOne({'name':api.name},function(err,foundApi){
+      // console.log(foundApi.changed_at,api.changed_at,'changed at')
+      if(err){throw err}
+      if(foundApi.changed_at.toString()===api.changed_at.toString()){
        console.log('database is unchanged')
        return null
-     } else {
+      } else {
+       console.log(api.name,'was changed')
        let update = 'Api :'+api.name+'\n was changed by:'+api.changed_by+'\n on:'+api.changed_at
        sendToSlack(update)
+       foundApi.changed_at = api.changed_at
+       foundApi.changed_by = api.changed_by
+       Api.findByIdAndUpdate(foundApi._id, {$set: foundApi},{new:true})
+        .then((api)=>{
+          console.log(api)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
      }
    })
   })
 }
 
-
-readData(data)
+module.exports = readData
+// readData(data)
