@@ -7,6 +7,7 @@ const password = process.env.SAP_PASSWORD
 const tokenUrl = config.TOKEN_URL
 const dataUrl = config.DATA_URL
 const slackBotUrl = config.SLACKBOT_URL
+const interval = config.INTERVAL
 const getApis = require('./lib/getData')
 const readData = require('./routes/slack.js')
 
@@ -18,13 +19,13 @@ const server = http.Server(app)
 const getData = function() {
   getApis.getApis(username,password,tokenUrl,dataUrl)
   .then( function (data){
-      console.log('data',data)
+      console.log('data')
       readData(data)
   })
 }
-
+setInterval(getData, interval)
 //setInterval( getData ,3000)
-getData()
+// getData()
 
 app.use((req, res, next) => {
     const err = new Error('Not Found')

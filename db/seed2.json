@@ -54,6 +54,24 @@
                 },
                 "name": "NSStations",
                 "state": "DEPLOYED"
+            },
+            {
+                "__metadata": {
+                    "id": "https://apiportalu34f5b50f-p1942719152trial.hanatrial.ondemand.com:443/apiportal/api/1.0/Management.svc/APIProxies('testnu')",
+                    "uri": "https://apiportalu34f5b50f-p1942719152trial.hanatrial.ondemand.com:443/apiportal/api/1.0/Management.svc/APIProxies('testnu')",
+                    "type": "apiportal.APIProxy"
+                },
+                "life_cycle": {
+                    "__metadata": {
+                        "type": "apiportal.History"
+                    },
+                    "changed_at": "/Date(1519680985020)/",
+                    "changed_by": "P2000185956",
+                    "created_at": "/Date(1503399986136)/",
+                    "created_by": "P1942719152"
+                },
+                "name": "testLater",
+                "state": "DEPLOYED"
             }
         ]
     }
