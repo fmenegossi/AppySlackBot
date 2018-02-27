@@ -7,14 +7,14 @@ const metadataSchema = new Schema({
   type: { type: String }
 })
 
-const resultSchema = new Schema({
+const apiSchema = new Schema({
   metadata:  metadataSchema ,
   changed_at: { type: Date, required: true },
-  changed_by: { type: Date, required: true },
+  changed_by: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
   created_by: { type: String },
   name: { type: String, required: true },
   state: { type: String }
 })
 
-module.exports = mongoose.model('results', resultSchema)
+module.exports = mongoose.model('apis', apiSchema)
