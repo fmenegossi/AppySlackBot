@@ -2,14 +2,17 @@ const router = require('express').Router()
 
 router.post('/api/getstatus', (req, res, next) => {
 
-    res.send({
-    "text": "status from AppyBot:",
-    "attachments": [
-        {
-            "text":"Hello! It's status from AppyBot!"
-        }
-    ]
-})
+    console.log('data : ' , req.body)
+
+    res.send(
+    {
+        "text": "status from AppyBot:",
+        "attachments": [
+            {
+                "text":"Hello! It's status from AppyBot!"
+            }
+        ]
+    })
   // const apiName = req.params.apiname
   //
   // getApis()

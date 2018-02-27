@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 // Connect to MongoDB
-const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost/slackbot'
+const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/slackbot'
 mongoose.set('debug', true)
 mongoose.connect(MONGODB_URL)
 
