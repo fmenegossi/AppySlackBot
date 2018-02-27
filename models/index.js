@@ -1,7 +1,7 @@
-const Result = require('./result')
+const Api = require('./api')
 const User = require('./user')
 
 module.exports = {
-  Result,
+  Api,
   User
 }
