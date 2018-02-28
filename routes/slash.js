@@ -11,29 +11,31 @@ const dataUrl = config.DATA_URL
 const {Api } = require('../models')
 
 router.post('/api/getstatus', (req, res, next) => {
-  let text = req.body.text.trim().toLowerCase()
-  if(!!text){
-    getApis(username,password,tokenUrl,dataUrl)
-    .then( function (data){
-      let apis = data.d.results.map(api =>  {
-        return reformatData(api)
-      })
+  getApis(username,password,tokenUrl,dataUrl)
+  .then( function (data){
+    let apis = data.d.results.map(api =>  {
+      return reformatData(api)
+    })
+    if(typeof req.body.text !== 'undefined'){
+      let text = req.body.text.trim().toLowerCase()
       let api = apis.filter(api => api.name.toLowerCase() === text)[0]
       if(!!api){
         let update = 'Api :'+api.name+'\n was last changed by:'+api.changed_by+'\n on:'+api.changed_at
         Api.findOne({'name':api.name},function(err,foundApi){
-        updateApi(api,foundApi)})
-        res.send({text:update})
+          updateApi(api,foundApi)})
+          res.send({text:update})
+        } else {
+          let list = apis.map(api =>  api.name)
+          let update = 'Api not found we have the following Apis:'+list.join(' ')
+          res.send({text:update})
+        }
       } else {
-        // let list =
-        let update = 'Api not found'
+        let list = apis.map(api =>  api.name)
+
+        let update = 'No text entered list of Apis:'+list.join(' ')
         res.send({text:update})
       }
     })
-  } else {
-    let update = 'No text entered'
-    res.send({text:update})
-  }
-})
+  })
 
-module.exports = router
+  module.exports = router
