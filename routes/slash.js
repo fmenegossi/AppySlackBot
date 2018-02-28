@@ -1,5 +1,6 @@
 const {Api } = require('../models')
 const router = require('express').Router()
+const sendToSlack = require('../lib/sendToSlack')
 
 // router.post('/api/getstatus', (req, res, next) => {
 //
@@ -26,6 +27,8 @@ router.post('/api/getstatus', (req, res, next) => {
         return null
         }
       }).then((foundApi) => {
+
+        sendToSlack(foundApi)
       res.send(foundApi)
     })
     .catch((error) => next(error))
