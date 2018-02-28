@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 router.post('/api/getstatus', (req, res, next) => {
 
-    console.log('data : ' , req.body)
+    console.log('data: ' , req.body)
 
     res.send(
     {
