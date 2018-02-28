@@ -10,6 +10,7 @@ router
     user = user.trim()
 
     console.log(code, user)
+    console.log('hsdfjkhskdfjhksdhfksdkjfkshdkfhsdhfkshjk')
 
 
     if(!user || !code) {
