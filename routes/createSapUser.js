@@ -30,6 +30,8 @@ router
 
           sapUser.save()
         }
+
+        res.send(sapUser)
       })
   })
 
