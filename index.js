@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 require('dotenv').config()
 const config = require('./config/config')
 const http = require('http')
@@ -17,6 +18,13 @@ const readData = require('./lib/checkData')
 const port = process.env.PORT || 3030
 const app = express()
 const server = http.Server(app)
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(slashRouter)
 const getData = function() {
