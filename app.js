@@ -8,7 +8,7 @@ const app = express()
 // Routes
 const slashRouter = require('./routes/slash')
 const blankRoot = require('./routes/blankRoot')
-const createSapUser = require('.routes/createSapUser')
+const createSapUser = require('./routes/createSapUser')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
