@@ -1,33 +1,27 @@
 const router = require('express').Router()
+const getStatus = require('../lib/getStatus')
+const showApiList = require('../lib/showApiList')
 
 router.post('/api/getstatus', (req, res, next) => {
-    const result = {
-        text: "status from AppyBot:",
-        attachments: [
-            {
-                text: "Hello! It's status from AppyBot!"
-            }
-        ]
-    }
+  let option = req.body.text.trim()
+  switch(option){
+    case '':
+      res.send({text:'Y U NO FILL IN NAME?'})
+      break
+    case 'list':
+      showApiList(option)
+      .then(function(update){
+      res.send({text:update})
+      })
+      break
 
-    res.send(result)
-
-
-  // const apiName = req.params.apiname
-  //
-  // getApis()
-  //   .then(() => {
-  //     Api.find({name: apiName})
-  //       .then((api) => {
-  //         if(!api){
-  //           err = new Error(`API ${apiName} not found`)
-  //           err.status = 404
-  //           next(err)
-  //         }
-  //
-  //         res.json(api)
-  //       })
-  //   })
+    default:
+      getStatus(option)
+      .then(function(update){
+        res.send({text:update})
+      })
+      break
+  }
 })
 
 module.exports = router
