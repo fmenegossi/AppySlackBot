@@ -11,7 +11,7 @@ const interval = config.INTERVAL
 const getApis = require('./lib/getData')
 const slashRouter = require('./routes/slash')
 
-const readData = require('./lib/checkData')
+const {readData} = require('./lib/checkData')
 
 
 
@@ -34,6 +34,8 @@ const getData = function() {
       readData(data)
   })
 }
+
+getData()
 setInterval(getData, interval)
 //setInterval( getData ,3000)
 // getData()
