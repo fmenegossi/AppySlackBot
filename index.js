@@ -53,3 +53,5 @@ app.use((req, res, next) => {
   })
 
 server.listen(port)
+
+module.exports = getData
