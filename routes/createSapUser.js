@@ -15,7 +15,6 @@ router
 
     if(!name || !code) {
       const err = new Error('User/Code not existent!')
-      err.status = 422
       next(err)
     }
 
@@ -28,7 +27,6 @@ router
           const newSapUser = new SapUser({name: name, code: code})
           newSapUser.save((error) => {
             const err = new Error(error)
-            err.status = 422
             next(err)
           })
         } else {
