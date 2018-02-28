@@ -9,6 +9,8 @@ router
     code = code.trim()
     user = user.trim()
 
+    console.log(code, user)
+
 
     if(!user || !code) {
       const err = new Error('User/Code not existent!')
