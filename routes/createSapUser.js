@@ -34,7 +34,7 @@ router
         } else {
           console.log('got the fucking guy')
 
-          findByIdAndUpdate(sapUser._id, { $set: name: name }, { new: true })
+          findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
             .then((user) => {
               res.send(user)
             })
