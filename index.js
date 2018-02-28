@@ -8,13 +8,17 @@ const tokenUrl = config.TOKEN_URL
 const dataUrl = config.DATA_URL
 const interval = config.INTERVAL
 const getApis = require('./lib/getData')
+const slashRouter = require('./routes/slash')
+
 const readData = require('./lib/checkData')
+
 
 
 const port = process.env.PORT || 3030
 const app = express()
 const server = http.Server(app)
 
+app.use(slashRouter)
 const getData = function() {
   getApis.getApis(username,password,tokenUrl,dataUrl)
   .then( function (data){
