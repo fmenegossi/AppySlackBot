@@ -6,7 +6,7 @@ router.post('/api/getstatus', (req, res, next) => {
 
     res.send(
     {
-        "text": "status from AppyBot:",
+        "text": req.body.text,
         "attachments": [
             {
                 "text":"Hello! It's status from AppyBot!"
