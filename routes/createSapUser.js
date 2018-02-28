@@ -4,7 +4,7 @@ const SapUser = require('../models/sapUser')
 router
   .post('/api/sapuser', (req, res, next) => {
     const data = req.body.text
-    let [code, user] = data.split(':')
+    let [code, name] = data.split(':')
 
     code = code.trim()
     name = name.trim()
