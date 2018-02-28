@@ -6,11 +6,12 @@ const username = process.env.SAP_EMAIL
 const password = process.env.SAP_PASSWORD
 const tokenUrl = config.TOKEN_URL
 const dataUrl = config.DATA_URL
-const slackBotUrl = config.SLACKBOT_URL
 const interval = config.INTERVAL
 const getApis = require('./lib/getData')
-const readData = require('./routes/slack.js')
 const slashRouter = require('./routes/slash')
+
+const readData = require('./lib/checkData')
+
 
 
 const port = process.env.PORT || 3030
