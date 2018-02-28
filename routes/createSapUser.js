@@ -21,6 +21,8 @@ router
 
     SapUser.find({code: code})
       .then((sapUser) => {
+        console.log(sapUser)
+
         if(!sapUser) {
           const newSapUser = new SapUser({name: user, code: code})
           newSapUser.save((error) => {
@@ -31,7 +33,13 @@ router
         } else {
           sapUser.name = user
 
-          sapUser.save()
+          sapUser.save((error) => {
+            if(error) {
+              const err = new Error(error)
+              err.status = 422
+              next(err)
+            }
+          })
         }
 
         res.send(sapUser)
