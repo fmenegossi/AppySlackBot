@@ -19,18 +19,19 @@ const sendToSlack = require('../lib/sendToSlack')
 
 
 router.post('/api/getstatus', (req, res, next) => {
-    console.log('data : ' , req.body.text)
-    Api.findOne({'name':req.body.text},function(err,foundApi){
-      if(err){throw err}
-      if(foundApi == null){
-        console.log('there is no Api with this name')
-        return null
+    console.log(`${req.body.text}`)
+    Api.findOne({ name: req.body.text })
+      .then((foundApi) => {
+        if(err){throw err}
+
+        if(!foundApi){
+          console.log('there is no Api with this name')
+          return null
         }
-      }).then((foundApi) => {
 
         sendToSlack(foundApi)
-      res.send(foundApi)
-    })
+        res.send(foundApi)
+      })
     .catch((error) => next(error))
 })
 module.exports = router
