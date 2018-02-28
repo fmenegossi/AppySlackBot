@@ -7,7 +7,7 @@ router.post('/api/getstatus', (req, res, next) => {
     console.log('data : ' , typeof(req.body))
     Api.findOne({'name':req.body.text},function(err,foundApi){
       console.log('nu', foundApi)
-      // sendToSlack(foundApi)
+
       if(err){throw err}
       if(foundApi == null){
         console.log('there is no Api with this name')
@@ -15,8 +15,8 @@ router.post('/api/getstatus', (req, res, next) => {
         }
         console.log(foundApi.changed_at.toString())
         let update = 'Api :'+foundApi.name+'\n was changed by:'+foundApi.changed_by+'\n on:'+foundApi.changed_at
-      // sendToSlack(update)
-      res.send({text: update})
+      sendToSlack(update)
+      // res.send({text: update})
 })
 })
 module.exports = router
