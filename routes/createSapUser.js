@@ -7,13 +7,13 @@ router
     let [code, user] = data.split(':')
 
     code = code.trim()
-    user = user.trim()
+    name = name.trim()
 
-    console.log(code, user)
+    console.log(code, name)
     console.log('hsdfjkhskdfjhksdhfksdkjfkshdkfhsdhfkshjk')
 
 
-    if(!user || !code) {
+    if(!name || !code) {
       const err = new Error('User/Code not existent!')
       err.status = 422
       next(err)
@@ -23,26 +23,32 @@ router
       .then((sapUser) => {
         console.log(sapUser)
 
-        if(!sapUser) {
-          const newSapUser = new SapUser({name: user, code: code})
+        if(!!sapUser) {
+          console.log('dont got fucking guy')
+          const newSapUser = new SapUser({name: name, code: code})
           newSapUser.save((error) => {
             const err = new Error(error)
             err.status = 422
             next(err)
           })
         } else {
-          sapUser.name = user
+          console.log('got the fucking guy')
 
-          sapUser.save((error) => {
-            if(error) {
-              const err = new Error(error)
-              err.status = 422
-              next(err)
-            }
-          })
+          findByIdAndUpdate(sapUser._id, { $set: name: name }, { new: true })
+            .then((user) => {
+              res.send(user)
+            })
+
+          // sapUser.save((error) => {
+          //   if(error) {
+          //     const err = new Error(error)
+          //     err.status = 422
+          //     next(err)
+          //   }
+          // })
         }
 
-        res.send(sapUser)
+        res.send({error: 'not updated/inserted'})
       })
   })
 
