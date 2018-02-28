@@ -3,7 +3,7 @@ const {Api } = require('../models')
 const sendToSlack = require('../lib/sendToSlack')
 const getData = require('../index.js')
 router.post('/api/getstatus', (req, res, next) => {
-    getData
+    //getData()
     console.log('data : ' , typeof(req.body))
     Api.findOne({'name':req.body.text},function(err,foundApi){
       console.log('nu', foundApi)
@@ -15,8 +15,8 @@ router.post('/api/getstatus', (req, res, next) => {
         }
         console.log(foundApi.changed_at.toString())
         let update = 'Api :'+foundApi.name+'\n was changed by:'+foundApi.changed_by+'\n on:'+foundApi.changed_at
-      sendToSlack(update)
-      // res.send({text: update})
+      //sendToSlack(update)
+      res.send({text: update})
 })
 })
 module.exports = router
