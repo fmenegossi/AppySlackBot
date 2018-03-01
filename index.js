@@ -27,17 +27,17 @@ const getData = function() {
 
 getData()
 
-const child = function () {exec('yarn jest tests/slashRoute.test.js',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error)
-
-    }
-})};
-
-child()
+// const child = function () {exec('yarn jest tests/slashRoute.test.js',
+//   function (error, stdout, stderr) {
+//     console.log('stdout: ' + stdout);
+//     console.log('stderr: ' + stderr);
+//     if (error !== null) {
+//       console.log('exec error: ' + error)
+//
+//     }
+// })};
+//
+// child()
 
 
 // Initialization
