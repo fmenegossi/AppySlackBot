@@ -5,10 +5,6 @@ const app = require('./app')
 const config = require('./config/config')
 const getApis = require('./lib/getData')
 const {readData} = require('./lib/checkData')
-const exec = require('child_process').exec
-
-
-
 
 // Configs
 const username = process.env.SAP_EMAIL
@@ -26,23 +22,6 @@ const getData = function() {
 }
 
 getData()
-
-const child = function () {exec('yarn jest tests/slashRoute.test.js',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error)
-
-    }
-})};
-
-child()
-
-
-// Initialization
-setInterval(getData, interval)
-setInterval(child, 100000)
 
 // Initialization
 const port = process.env.PORT || 3030
