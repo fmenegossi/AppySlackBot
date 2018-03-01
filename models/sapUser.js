@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const sapUserSchema = new Schema({
   name: { type: String, required: true },
-  code: { type: String, required: true }
+  code: { type: String, required: true, unique: true }
 })
 
 module.exports = mongoose.model('sapUsers', sapUserSchema)
