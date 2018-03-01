@@ -4,7 +4,7 @@ const http = require('http')
 const app = require('./app')
 const config = require('./config/config')
 const getApis = require('./lib/getData')
-const readData = require('./lib/checkData')
+const {readData} = require('./lib/checkData')
 
 // Configs
 const username = process.env.SAP_EMAIL
@@ -20,6 +20,9 @@ const getData = function() {
     readData(data)
   })
 }
+
+getData()
+
 
 // Initialization
 setInterval(getData, interval)

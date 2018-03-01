@@ -1,22 +1,25 @@
 const router = require('express').Router()
-const {Api } = require('../models')
-const sendToSlack = require('../lib/sendToSlack')
-const getData = require('../index.js')
-router.post('/api/getstatus', (req, res, next) => {
-    //getData()
-    console.log('data : ' , typeof(req.body))
-    Api.findOne({'name':req.body.text},function(err,foundApi){
-      console.log('nu', foundApi)
+const getStatus = require('../lib/getStatus')
+const showApiList = require('../lib/showApiList')
 
-      if(err){throw err}
-      if(foundApi == null){
-        console.log('there is no Api with this name')
-        return null
-        }
-        console.log(foundApi.changed_at.toString())
-        let update = 'Api :'+foundApi.name+'\n was changed by:'+foundApi.changed_by+'\n on:'+foundApi.changed_at
-      //sendToSlack(update)
-      res.send({text: update})
-})
+router.post('/api/getstatus', (req, res, next) => {
+  let option = req.body.text.trim()
+  switch(option){
+    case '':
+      res.send({text:'Y U NO FILL IN NAME?'})
+      break
+    case 'list':
+      showApiList(option)
+      .then(function(update){
+      res.send({text:update})
+      })
+      break
+
+    default:
+      getStatus(option)
+      .then(function(update){
+        res.send({text:update})
+      })
+  }
 })
 module.exports = router
