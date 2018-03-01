@@ -39,10 +39,14 @@ function (error, stdout, stderr) {
 
 const testsRoutes = ["slashRoute", "getData"]
 
-testsRoutes.map(test => child(test))
+
 
 setInterval(getData, interval)
-// setInterval(testsRoutes.map(test => child(test)), 100000)
+setInterval(function(){
+  testsRoutes.map(test => child(test))
+}, 4000000)
+
+
 
 // Initialization
 const port = process.env.PORT || 3030
