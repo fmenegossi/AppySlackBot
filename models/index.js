@@ -4,6 +4,5 @@ const SapUser = require('./sapUser')
 
 module.exports = {
   Api,
-  SapUser,
-  //User
+  SapUser
 }
