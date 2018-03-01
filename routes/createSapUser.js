@@ -10,7 +10,6 @@ router
     name = name.trim()
 
     console.log(code, name)
-    console.log('hsdfjkhskdfjhksdhfksdkjfkshdkfhsdhfkshjk')
 
 
     if(!name || !code) {
@@ -23,14 +22,14 @@ router
         console.log(sapUser)
 
         if(!!sapUser) {
-          console.log('dont got fucking guy')
+          console.log('dont got guy')
           const newSapUser = new SapUser({name: name, code: code})
           newSapUser.save((error) => {
             const err = new Error(error)
             next(err)
           })
         } else {
-          console.log('got the fucking guy')
+          console.log('got the guy')
 
           findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
             .then((user) => {
