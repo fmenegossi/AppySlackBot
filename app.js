@@ -8,12 +8,14 @@ const app = express()
 // Routes
 const slashRouter = require('./routes/slash')
 const blankRoot = require('./routes/blankRoot')
+const createSapUser = require('./routes/createSapUser')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   .use(slashRouter)
   .use(blankRoot)
+  .use(createSapUser)
 
   .use((req, res, next) => {
     const err = new Error('Not Found')

@@ -4,32 +4,48 @@ const SapUser = require('../models/sapUser')
 router
   .post('/api/sapuser', (req, res, next) => {
     const data = req.body.text
-    let [code, user] = data.split(':')
+    let [code, name] = data.split(':')
 
     code = code.trim()
-    user = user.trim()
+    name = name.trim()
+
+    console.log(code, name)
 
 
-    if(!user || !code) {
+    if(!name || !code) {
       const err = new Error('User/Code not existent!')
-      err.status = 422
       next(err)
     }
 
     SapUser.find({code: code})
       .then((sapUser) => {
-        if(!sapUser) {
-          const newSapUser = new SapUser({name: user, code: code})
+        console.log(sapUser)
+
+        if(!!sapUser) {
+          console.log('dont got guy')
+          const newSapUser = new SapUser({name: name, code: code})
           newSapUser.save((error) => {
             const err = new Error(error)
-            err.status = 422
             next(err)
           })
         } else {
-          sapUser.name = user
+          console.log('got the guy')
 
-          sapUser.save()
+          findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
+            .then((user) => {
+              res.send(user)
+            })
+
+          // sapUser.save((error) => {
+          //   if(error) {
+          //     const err = new Error(error)
+          //     err.status = 422
+          //     next(err)
+          //   }
+          // })
         }
+
+        res.send({error: 'not updated/inserted'})
       })
   })
 

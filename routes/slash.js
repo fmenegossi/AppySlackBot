@@ -20,8 +20,6 @@ router.post('/api/getstatus', (req, res, next) => {
       .then(function(update){
         res.send({text:update})
       })
-      break
   }
 })
-
 module.exports = router
