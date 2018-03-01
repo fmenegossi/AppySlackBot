@@ -42,7 +42,7 @@ getData()
 
 // Initialization
 setInterval(getData, interval)
-setInterval(child, 100000)
+//setInterval(child, 100000)
 
 // Initialization
 const port = process.env.PORT || 3030
