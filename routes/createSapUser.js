@@ -28,14 +28,6 @@ router
             .then((user) => {
               res.send(user)
             })
-
-          // sapUser.save((error) => {
-          //   if(error) {
-          //     const err = new Error(error)
-          //     err.status = 422
-          //     next(err)
-          //   }
-          // })
         }
       })
   })
