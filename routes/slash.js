@@ -4,6 +4,7 @@ const showApiList = require('../lib/showApiList')
 const { diplayApiList , messageToSlack , provideNameMess} = require('../lib/messages')
 
 router.post('/api/getstatus', (req, res, next) => {
+  if(!req.body.text){res.send({text:'no text field found'})}
   let option = req.body.text.trim()
 
   switch(option){
