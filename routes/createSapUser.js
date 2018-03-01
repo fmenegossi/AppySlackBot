@@ -11,27 +11,20 @@ router
 
     console.log(code, name)
 
-
     if(!name || !code) {
-      const err = new Error('User/Code not existent!')
+      const err = new Error('User and/or Code not present!')
       next(err)
     }
 
     SapUser.find({code: code})
       .then((sapUser) => {
-        console.log(sapUser)
-
-        if(!!sapUser) {
-          console.log('dont got guy')
-          const newSapUser = new SapUser({name: name, code: code})
-          newSapUser.save((error) => {
-            const err = new Error(error)
-            next(err)
+        if(!sapUser) {
+          SapUser.create({name: name, code: code}, (error, user) => {
+            if(error) { next(error) }
+            res.send(user)
           })
         } else {
-          console.log('got the guy')
-
-          findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
+          SapUser.findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
             .then((user) => {
               res.send(user)
             })
@@ -44,8 +37,6 @@ router
           //   }
           // })
         }
-
-        res.send({error: 'not updated/inserted'})
       })
   })
 
