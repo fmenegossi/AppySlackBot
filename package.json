@@ -6,6 +6,9 @@
   "repository": "https://github.com/fmenegossi/AppySlackBot",
   "author": "Codaisseur #14 graduates",
   "license": "MIT",
+  "engines": {
+    "node": ">= 8.5.0"
+  },
   "scripts": {
     "start": "node .",
     "dev": "nodemon --inspect .",
