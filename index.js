@@ -27,22 +27,22 @@ const getData = function() {
 
 getData()
 
-const child = function () {exec('yarn jest tests/slashRoute.test.js',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error)
+const child = function (route) {exec(`yarn jest tests/${route}.test.js`,
+function (error, stdout, stderr) {
+  console.log('stdout: ' + stdout);
+  console.log('stderr: ' + stderr);
+  if (error !== null) {
+    console.log('exec error: ' + error)
 
-    }
-})};
+  }
+})}
 
-child()
+const testsRoutes = ["slashRoute", "getData"]
 
+testsRoutes.map(test => child(test))
 
-// Initialization
 setInterval(getData, interval)
-setInterval(child, 100000)
+// setInterval(testsRoutes.map(test => child(test)), 100000)
 
 // Initialization
 const port = process.env.PORT || 3030

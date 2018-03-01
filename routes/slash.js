@@ -3,7 +3,7 @@ const getStatus = require('../lib/getStatus')
 const showApiList = require('../lib/showApiList')
 
 router.post('/api/getstatus', (req, res, next) => {
-  if(!req.body.text){res.send({text:'no text field found'})}
+  // if(!req.body.text){res.send({text:'no text field found'})}
   let option = req.body.text.trim()
   switch(option){
     case '':
