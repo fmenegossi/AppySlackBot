@@ -1,11 +1,15 @@
 const request = require('supertest')
 const app = require('../app')
+const sendToSlack = require('../lib/sendToSlack')
 
 describe('Test the slash route', () => {
   test('It should response the POST method', () => {
       return request(app).post('/api/getstatus')
         .then((response) => {
-
+          console.log(" response " ,response.statusCode)
+          if (response.statusCode!=200){
+            sendToSlack("failed test")
+          }
           expect(response.statusCode).toBe(200)
       })
   })
