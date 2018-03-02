@@ -8,12 +8,14 @@ const app = express()
 // Routes
 const slashRouter = require('./routes/slash')
 const blankRoot = require('./routes/blankRoot')
+const verificationToken = require('./lib/verificationToken')
 const sapUser = require('./routes/sapUser')
 const platform = require('./routes/platform')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
+  .use(verificationToken)
   .use(slashRouter)
   .use(blankRoot)
   .use(sapUser)
