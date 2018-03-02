@@ -12,6 +12,9 @@ function (error, stdout, stderr) {
 
 const testsRoutes = ["slashRoute", "getData"]
 
-setInterval(function(){
-  testsRoutes.map(test => child(test))
-}, 4000000)
+testsRoutes.map(test => child(test))
+
+// maybe code to run them automically
+// setInterval(function(){
+//   testsRoutes.map(test => child(test))
+// }, 4000000)
