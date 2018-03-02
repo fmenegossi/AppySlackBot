@@ -3,7 +3,7 @@ const { Platform } = require('../models')
 
 router
   .post('/api/platforms', (req, res, next) => {
-    const data = req.body.text
+    const data = JSON.parse(req.body.text)
 
     console.log(data.name)
 
