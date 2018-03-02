@@ -9,10 +9,12 @@ const app = express()
 const slashRouter = require('./routes/slash')
 const blankRoot = require('./routes/blankRoot')
 const createSapUser = require('./routes/createSapUser')
+const verificationToken = require('./lib/verificationToken')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
-  .use(bodyParser.json())
+  .use(bodyParser.json())]
+  .use(verificationToken)
   .use(slashRouter)
   .use(blankRoot)
   .use(createSapUser)

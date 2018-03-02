@@ -10,6 +10,7 @@ router.post('/api/getstatus', (req, res, next) => {
       res.send({text:'Y U NO FILL IN NAME?'})
       break
     case 'list':
+      console.log("wat is de req.body", req.body)
       showApiList(option)
       .then(function(update){
       res.send({text:update})
