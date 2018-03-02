@@ -10,13 +10,12 @@ const {Platform} = require('./models')
 // Configs
 const interval = config.INTERVAL
 
-
 console.log('test')
 
 const getData = function() {
   console.log('getData')
   Platform.find().then(function(platforms){
-    console.log(platforms[0].name)
+    // console.log(platforms[0].name)
       platforms.map((platform )=>{
         let getDataUrl = (platform.url+'/APIProxies?$select=name,life_cycle,state&$format=json')
         getApis.getApis(platform.username,platform.password,platform.url,getDataUrl)
@@ -26,6 +25,7 @@ const getData = function() {
           })
     })
   })
+  .catch((err)=>{console.log(err)})
 }
 getData()
 
@@ -39,12 +39,10 @@ const child = function () {exec('yarn jest tests/slashRoute.test.js',
     }
 })}
 
-// child()
 
 
 // Initialization
 setInterval(getData, interval)
-// setInterval(child, 100000)
 
 // Initialization
 const port = process.env.PORT || 3030
