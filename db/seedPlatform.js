@@ -21,12 +21,12 @@ const seedPlatforms = () => {
         if(!foundPlatform) {
           Platform.create(platform)
           .then((platform) => {
-            console.log('made platform')
-            
+            console.log('made platform',platform.name)
+            return
           })
           .catch((err) => {console.log(err)})
         } else {
-          console.log('seed exists')
+          console.log('seed exists',foundPlatform.name)
         }
       })
       .catch((err) => {console.log(err)})
