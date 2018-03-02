@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const SapUser = require('../models/sapUser')
-const { confirmUserCreated , confirmUserUpdated } = require('../lib/messages.js')
+const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../lib/messages.js')
 
 router
   .post('/api/sapuser', (req, res, next) => {
@@ -13,8 +13,11 @@ router
     console.log(code, name)
 
     if(!name || !code) {
-      const err = new Error('User and/or Code not present!')
-      next(err)
+      SapUser.find()
+        .then((users) => {
+          res.send(fetchUserList(users))
+          next(err)
+        })
     }
 
     SapUser.findOne({code: code})
