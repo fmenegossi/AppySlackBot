@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const getStatus = require('../lib/getStatus')
 const showApiList = require('../lib/showApiList')
-const { diplayApiList , messageToSlack , provideNameMess} = require('../lib/messages')
+const { displayApiList , messageToSlack , provideNameMess} = require('../lib/messages')
 
 router.post('/api/getstatus', (req, res, next) => {
   // if(!req.body.text){res.send({text:'no text field found'})}
@@ -15,6 +15,7 @@ router.post('/api/getstatus', (req, res, next) => {
       
       showApiList(option)
       .then(function(update){
+        console.log(update,'UPDATE')
         res.send( displayApiList(update))
       })
       break
