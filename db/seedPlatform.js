@@ -13,18 +13,24 @@ const platforms = [{
   password:password
 }]
 
-module.exports = function(){
-  platforms.map(platform=>{
-    Platform.findOne({'name':platform.name},function(existingPlatform){
-      console.log(existingPlatform,'EXISTING PLATFORM')
-      if(!!existingPlatform){
-        console.log('seed exists')
-      }else{
-        Platform.create(platform)
-        .then((platform)=>{
-          console.log('made platform')
-        }).catch((err)=>{console.log(err)})
-      }
-    })
+const seedPlatforms = () => {
+  platforms.map(platform => {
+    Platform.findOne({name: platform.name})
+      .then((foundPlatform) => {
+        console.log(!foundPlatform,'EXISTING PLATFORM')
+        if(!foundPlatform) {
+          Platform.create(platform)
+          .then((platform) => {
+            console.log('made platform')
+            
+          })
+          .catch((err) => {console.log(err)})
+        } else {
+          console.log('seed exists')
+        }
+      })
+      .catch((err) => {console.log(err)})
   })
 }
+
+module.exports = seedPlatforms

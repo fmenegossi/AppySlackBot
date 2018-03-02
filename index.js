@@ -16,12 +16,13 @@ console.log('test')
 
 seedPlatforms()
 
-
 const getData = function() {
-  Platform.find({}).then(function(platforms){
+  console.log('getData')
+  Platform.find().then(function(platforms){
     console.log(platforms)
       platforms.map((platform )=>{
-        getApis.getApis(platform.username,platform.password,platform.url,(platform.url+'/APIProxies?$select=name,life_cycle,state&$format=json'))
+        let getDataUrl = (platform.url+'/APIProxies?$select=name,life_cycle,state&$format=json')
+        getApis.getApis(platform.username,platform.password,platform.url,getDataUrl)
       .then(function(data){
         console.log('data',data.d.results[0].name)
         readData(data,platform.name)
