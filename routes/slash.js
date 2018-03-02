@@ -12,17 +12,16 @@ router.post('/api/getstatus', (req, res, next) => {
       res.send( provideNameMess() )
       break
     case 'list':
-      
-      showApiList(option)
-      .then(function(update){
+      showApiList()
+      .then((update) => {
         console.log(update,'UPDATE')
         res.send( displayApiList(update))
       })
-      break
+    break
 
     default:
       getStatus(option)
-      .then(function(update){
+      .then((update) => {
         res.send( messageToSlack(update) )
       })
   }
