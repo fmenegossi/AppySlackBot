@@ -13,7 +13,7 @@ const verificationToken = require('./lib/verificationToken')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
-  .use(bodyParser.json())]
+  .use(bodyParser.json())
   .use(verificationToken)
   .use(slashRouter)
   .use(blankRoot)
