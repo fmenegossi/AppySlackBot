@@ -12,7 +12,7 @@ router.post('/api/getstatus', (req, res, next) => {
       res.send( provideNameMess() )
       break
     case 'list':
-      console.log("wat is de req.body", req.body)
+      
       showApiList(option)
       .then(function(update){
         res.send( displayApiList(update))
