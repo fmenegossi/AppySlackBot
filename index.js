@@ -7,6 +7,7 @@ const {readData} = require('./lib/checkData')
 const exec = require('child_process').exec
 const config = require('./config/config')
 const {Platform} = require('./models')
+
 // Configs
 const interval = config.INTERVAL
 
@@ -29,21 +30,8 @@ const getData = function() {
 }
 getData()
 
-const child = function () {exec('yarn jest tests/slashRoute.test.js',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error)
-
-    }
-})}
-
-
-
 // Initialization
 setInterval(getData, interval)
-
 // Initialization
 const port = process.env.PORT || 3030
 const server = http.Server(app)

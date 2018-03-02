@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const SapUser = require('../models/sapUser')
-const { confirmUserCreated , confirmUserUpdated } = require('../lib/messages.js')
 
 router
   .post('/api/sapuser', (req, res, next) => {
@@ -22,12 +21,12 @@ router
         if(!sapUser) {
           SapUser.create({name: name, code: code}, (error, user) => {
             if(error) { next(error) }
-            res.send( confirmUserCreated(user) )
+            res.send(user)
           })
         } else {
           SapUser.findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
             .then((user) => {
-              res.send( confirmUserUpdated(user) )
+              res.send(user)
             })
         }
       })
