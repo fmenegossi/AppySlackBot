@@ -13,10 +13,11 @@ router
     console.log(code, name)
 
     if(!name || !code) {
+      const err = new Error('User and/or Code not present!')
+      next(err)
       SapUser.find()
         .then((users) => {
           res.send(fetchUserList(users))
-          next(err)
         })
     }
 
