@@ -3,9 +3,9 @@ const { Platform } = require('../models')
 
 router
   .post('/api/platforms', (req, res, next) => {
-    const data = req.body
+    const data = req.body.text
 
-    console.log(data)
+    console.log(data.name)
 
     if(!data) {
       const err = new Error('Data not found!')
