@@ -5,7 +5,14 @@ const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../l
 router
   .post('/api/sapuser', (req, res, next) => {
 
+
     const data = req.body.text
+    console.log(data)
+    if (data === undefined){
+      const err = new Error('Please provide a text key')
+      err.status = 422
+      next(err)
+    }
     let [code, name] = data.split(':')
     if(!req.body.text) {
       SapUser.find()
