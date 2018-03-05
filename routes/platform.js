@@ -14,7 +14,7 @@ const isJson = (requestBody) => {
 router
   .post('/api/platforms', (req, res, next) => {
 
-    function checkBody(text) {
+    const checkBody = (text) => {
       if ((!text) ||
         (text.slice(-1) !== '}' && text.slice(0, 1) !== '{') || !isJson(text)) {
         res.send(properPlatformFormat())
@@ -24,7 +24,7 @@ router
       }
     }
 
-    function checkFormat(data) {
+    const checkFormat = (data) => {
       if (!data.name || !data.url || !data.username || !data.password) {
         res.send(properPlatformFormat())
       } else {
@@ -32,7 +32,7 @@ router
       }
     }
 
-    function findPlatform(data) {
+    const findPlatform = (data) => {
       Platform.findOne({
           name: data.name
         })
@@ -45,7 +45,7 @@ router
         })
     }
 
-    function createPlatform(data) {
+    const createPlatform = (data) => {
       const newPlatform = {
         name: data.name,
         url: data.url,
@@ -61,7 +61,7 @@ router
       })
     }
 
-    function updatePlatform(platform, data) {
+    const updatePlatform = (platform, data) => {
       const platformUpdates = {
         url: data.url,
         username: data.username,
