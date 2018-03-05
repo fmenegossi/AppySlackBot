@@ -23,6 +23,7 @@ router
         const err = new Error('User and/or Code not present!')
         res.send('User and/or Code not present!')
       } else {
+        console.log(code, name)
         checkUser(code, name)
       }
     }
@@ -43,7 +44,7 @@ router
           if(!sapUser) {
             createUser(code, name)
           } else {
-            updateUser(code, name)
+            updateUser(code, name, sapUser)
           }
         })
       }
@@ -55,7 +56,7 @@ router
         })
       }
 
-      function updateUser (code, name ) {
+      function updateUser (code, name, sapUser ) {
         SapUser.findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
           .then((user) => {
             res.send( confirmUserUpdated(user) )
