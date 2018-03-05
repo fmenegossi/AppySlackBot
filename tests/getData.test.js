@@ -14,6 +14,5 @@ describe('It checks if we can get data and token from Api', () => {
         .then((token) => {
           expect(token !== '')
         })
-
   })
 })

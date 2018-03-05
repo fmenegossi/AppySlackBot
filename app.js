@@ -28,7 +28,7 @@ app
   })
 
   .use((err, req, res, next) => {
-    console.log(res)
+    //console.log(res)
     res.status(err.status || 500)
     res.send({
       message: err.message,
