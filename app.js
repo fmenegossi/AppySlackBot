@@ -23,7 +23,6 @@ app
 
   .use((req, res, next) => {
     const err = new Error('Not Found')
-    console.log('erroooooooooou')
     err.status = 404
     next(err)
   })
