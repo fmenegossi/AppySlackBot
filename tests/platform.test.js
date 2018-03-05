@@ -5,10 +5,10 @@ const requestBody = {
   'text': 'list'
 }
 
-describe('Test the slash route', () => {
+describe('Test the platform route', () => {
   test('It should response the POST method', () => {
     return request(app)
-      .post('/api/getstatus')
+      .post('/api/platforms')
       .set({ 'x-test': 'test' })
       .send(requestBody)
       .then((response) => {
@@ -18,7 +18,7 @@ describe('Test the slash route', () => {
 
   test('It should give us a nice text', () => {
     return request(app)
-      .post('/api/getstatus')
+      .post('/api/platforms')
       .set({ 'x-test': 'test' })
       .send(requestBody)
       .then((response) => {
@@ -30,7 +30,7 @@ describe('Test the slash route', () => {
 
   test('It should FAIL the POST method', () => {
     return request(app)
-      .post('/api/getstatus')
+      .post('/api/platforms')
       .send(requestBody)
       .then((response) => {
         expect(response.statusCode).toBe(401)
