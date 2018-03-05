@@ -4,22 +4,22 @@ const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../l
 
 router
   .post('/api/sapuser', (req, res, next) => {
+
     const data = req.body.text
     let [code, name] = data.split(':')
-
+    if(!req.body.text) {
+      SapUser.find()
+      .then((users) => {
+        res.send(fetchUserList(users))
+      })
+    }
+    else if(!name || !code) {
+      const err = new Error('User and/or Code not present!')
+      res.send('User and/or Code not present!')
+    }  else {
+    console.log(code, name)
     code = code.trim()
     name = name.trim()
-
-    console.log(code, name)
-
-    if(!name || !code) {
-      const err = new Error('User and/or Code not present!')
-      next(err)
-      SapUser.find()
-        .then((users) => {
-          res.send(fetchUserList(users))
-        })
-    }
 
     SapUser.findOne({code: code})
       .then((sapUser) => {
@@ -34,7 +34,7 @@ router
               res.send( confirmUserUpdated(user) )
             })
         }
-      })
+      })}
   })
 
 module.exports = router
