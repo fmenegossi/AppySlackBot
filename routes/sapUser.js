@@ -5,7 +5,7 @@ const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../l
 router
   .post('/api/sapuser', (req, res, next) => {
 
-    function checkBody (data) {
+    const checkBody = (data) => {
       if (data.text===undefined) {
         const err = new Error('Please provide a text key')
         err.status = 422
@@ -15,7 +15,7 @@ router
       }
     }
 
-    function checkText (text) {
+    const checkText = (text) => {
       let [code, name] = text.split(':')
       if (!text) {
         fetchList()
@@ -29,14 +29,14 @@ router
     }
 
 
-    function fetchList () {
+    const fetchList = () => {
       SapUser.find()
       .then((users) => {
         res.send(fetchUserList(users))
       })
     }
 
-    function checkUser(code, name) {
+    const checkUser = (code, name) => {
       code = code.trim()
       name = name.trim()
 
@@ -50,14 +50,14 @@ router
         })
       }
 
-      function createUser (code, name ) {
+      const createUser = (code, name ) => {
         SapUser.create({name: name, code: code}, (error, user) => {
           if(error) { next(error) }
           res.send( confirmUserCreated(user) )
         })
       }
 
-      function updateUser (code, name, sapUser ) {
+      const updateUser = (code, name, sapUser ) => {
         SapUser.findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
           .then((user) => {
             res.send( confirmUserUpdated(user) )
