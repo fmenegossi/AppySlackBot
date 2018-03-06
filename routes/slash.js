@@ -2,6 +2,7 @@ const router = require('express').Router()
 const getStatus = require('../lib/getStatus')
 const showApiList = require('../lib/showApiList')
 const { displayApiList , messageToSlack , provideNameMess} = require('../lib/messages')
+const isJson = require('../lib/jsonCheck')
 
 router.post('/api/getstatus', (req, res, next) => {
   // if(!req.body.text){res.send({text:'no text field found'})}
@@ -20,10 +21,14 @@ router.post('/api/getstatus', (req, res, next) => {
     break
 
     default:
-      getStatus(option)
-      .then((update) => {
-        res.send( messageToSlack(update) )
-      })
+      if(isJson(option)){
+        getStatus(option)
+        .then((update) => {
+          res.send( messageToSlack(update) )
+        })
+      } else {
+        res.send(provideNameMess())
+      }
   }
 })
 module.exports = router

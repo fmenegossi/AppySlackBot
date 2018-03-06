@@ -1,22 +1,14 @@
 const router = require('express').Router()
 const { Platform } = require('../models')
 const { properPlatformFormat } = require('../lib/messages')
+const isJson = require('../lib/jsonCheck')
 
-const isJson = (requestBody) => {
-  try {
-    JSON.parse(requestBody)
-    return true
-  } catch (err) {
-    return false
-  }
-}
 
 router
   .post('/api/platforms', (req, res, next) => {
 
     const checkBody = (text) => {
-      if ((!text) ||
-        (text.slice(-1) !== '}' && text.slice(0, 1) !== '{') || !isJson(text)) {
+      if ((!text) || !isJson(text)) {
         res.send(properPlatformFormat())
       } else {
         const data = JSON.parse(text)
