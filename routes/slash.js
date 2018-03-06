@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const getStatus = require('../lib/getStatus')
 const showApiList = require('../lib/showApiList')
-const { displayApiList , messageToSlack , provideNameMess} = require('../lib/messages')
+const { displayApiList , messageToSlack , provideNameMess } = require('../lib/messages')
 const isJson = require('../lib/jsonCheck')
 
 router.post('/api/getstatus', (req, res, next) => {
