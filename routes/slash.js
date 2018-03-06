@@ -5,8 +5,7 @@ const { displayApiList , messageToSlack , provideNameMess} = require('../lib/mes
 const isJson = require('../lib/jsonCheck')
 
 router.post('/api/getstatus', (req, res, next) => {
-  // if(!req.body.text){res.send({text:'no text field found'})}
-  let option = req.body.text.trim()
+  const option = req.body.text
 
   switch(option){
     case '':
@@ -30,5 +29,6 @@ router.post('/api/getstatus', (req, res, next) => {
         res.send(provideNameMess())
       }
   }
+
 })
 module.exports = router
