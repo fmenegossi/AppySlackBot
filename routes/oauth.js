@@ -27,6 +27,7 @@ router
         res.send("Success!")
       }
     })
+    .catch((err) => { res.send(err)})
   })
 
 module.exports = router
