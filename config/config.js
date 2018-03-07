@@ -3,7 +3,7 @@ const DATA_URL = 'https://apiportalu34f5b50f-p1942719152trial.hanatrial.ondemand
 const SLACKBOT_URL = 'https://hooks.slack.com/services/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'
 
 
-const SLASH_TOKEN = 'ZXl4QW0LJ3k9pc9pkSqIS5Ds'
+  const SLASH_TOKEN = 'ZXl4QW0LJ3k9pc9pkSqIS5Ds'
 const INTERVAL = 30000
 const WARNING_COLOR = "#ad0505"
 const SUCCESS_COLOR = "#005D00"
