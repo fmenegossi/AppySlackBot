@@ -14,7 +14,6 @@ const interval = config.INTERVAL
 console.log('./index')
 
 const getData = () => {
-  console.log('getData')
   Platform.find()
     .then((platforms) => {
       console.log('ln21:', platforms)

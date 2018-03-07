@@ -38,7 +38,7 @@ router
     }
 
     const createPlatform = (data) => {
-      const basicAuthString = btoa(`${data.username}:${data.password}`)
+      const basicAuthString = Buffer.from(`${data.username}:${data.password}`).toString('base64')
       const newPlatform = {
         name: data.name,
         url: data.url,
