@@ -14,10 +14,9 @@ router
     console.log(options,"OPTIONS")
     request
     .get(options)
-    .then((error, response, body) => {
+    .then((response, body) => {
       console.log(body,"BODY")
       console.log(response,"RESPONSE")
-
       var JSONresponse = JSON.parse(body)
       if (!JSONresponse.ok){
         console.log(JSONresponse,"JSONRESPONSE ln19")
@@ -27,7 +26,7 @@ router
         res.send("Success!")
       }
     })
-    .catch((err) => { res.send(err)})
+    .catch((err) => { res.send(err,"you broke it")})
   })
 
 module.exports = router
