@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const getStatus = require('../lib/getStatus')
 const showApiList = require('../lib/showApiList')
-const { displayApiList , messageToSlack , provideNameMess } = require('../lib/messages')
+const { generalMsg } = require('../lib/messages')
 const isJson = require('../lib/jsonCheck')
 
 router.post('/api/getstatus', (req, res, next) => {
@@ -9,13 +9,13 @@ router.post('/api/getstatus', (req, res, next) => {
 
   switch(option){
     case '':
-      res.send( provideNameMess() )
+      res.send( generalMsg({ "msg": "provideNameMess"}) )
       break
     case 'list':
       showApiList()
       .then((update) => {
         console.log(update,'UPDATE')
-        res.send( displayApiList(update))
+        res.send( generalMsg({"msg" : "displayApiList", "data" : update } ) )
       })
     break
 
@@ -23,10 +23,10 @@ router.post('/api/getstatus', (req, res, next) => {
       if(isJson(option)){
         getStatus(option)
         .then((update) => {
-          res.send( messageToSlack(update) )
+          res.send( generalMsg({"msg" : "showSingleApi", "data" : update } )  )
         })
       } else {
-        res.send(provideNameMess())
+        res.send( generalMsg({ "msg": "provideNameMess"}) )
       }
   }
 

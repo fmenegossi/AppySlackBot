@@ -6,6 +6,7 @@ const SLASH_TOKEN = 'xmwZYiyHJdzeJvbSaqjqpdNF'
 const INTERVAL = 30000
 const WARNING_COLOR = "#ad0505"
 const SUCCESS_COLOR = "#005D00"
+const NEUTRAL_COLOR = "#ffdd40"
 
 module.exports = {
        TOKEN_URL ,
@@ -14,5 +15,6 @@ module.exports = {
        INTERVAL,
        SLASH_TOKEN,
        SUCCESS_COLOR,
-       WARNING_COLOR
+       WARNING_COLOR,
+       NEUTRAL_COLOR
      }

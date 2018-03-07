@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { Platform } = require('../models')
-const { properPlatformFormat } = require('../lib/messages')
+const { generalMsg } = require('../lib/messages')
 const isJson = require('../lib/jsonCheck')
 
 
@@ -9,7 +9,7 @@ router
 
     const checkBody = (text) => {
       if ((!text) || !isJson(text)) {
-        res.send(properPlatformFormat())
+        res.send(generalMsg({ "msg" : "properPlatformFormat" }))
       } else {
         const data = JSON.parse(text)
         checkFormat(data)
@@ -18,7 +18,7 @@ router
 
     const checkFormat = (data) => {
       if (!data.name || !data.url || !data.username || !data.password) {
-        res.send(properPlatformFormat())
+        res.send( generalMsg( {"msg" : "properPlatformFormat" } ) )
       } else {
         findPlatform(data)
       }
