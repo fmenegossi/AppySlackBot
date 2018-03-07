@@ -11,23 +11,24 @@ const {Platform} = require('./models')
 // Configs
 const interval = config.INTERVAL
 
-console.log('test')
+console.log('./index')
 
-const getData = function() {
+const getData = () => {
   console.log('getData')
-  Platform.find().then(function(platforms){
-    // console.log(platforms[0].name)
-      platforms.map((platform )=>{
-        let getDataUrl = (platform.url+'/APIProxies?$select=name,life_cycle,state&$format=json')
-        getApis.getApis(platform.username,platform.password,platform.url,getDataUrl)
-          .then(function(data){
-            console.log('data',data.d.results[0].name)
-            readData(data,platform.name)
+  Platform.find()
+    .then((platforms) => {
+      console.log('ln21:', platforms)
+      platforms.map((platform) => {
+        getApis.getApis(platform.sap_auth, platform.url)
+          .then((data) => {
+            console.log('ln25:', data.d.results)
+            readData(data, platform.name)
           })
+      })
     })
-  })
-  .catch((err)=>{console.log(err)})
+    .catch((err) => { console.log(err) })
 }
+
 getData()
 
 // Initialization
