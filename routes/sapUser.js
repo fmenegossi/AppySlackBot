@@ -5,15 +5,15 @@ const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../l
 router
   .post('/api/sapuser', (req, res, next) => {
 
-    const checkBody = (data) => {
-      if (data.text===undefined) {
-        const err = new Error('Please provide a text key')
-        err.status = 422
-        next(err)
-      } else {
-        checkText(data.text)
-      }
-    }
+    // const checkBody = (data) => {
+    //   if (data.text===undefined) {
+    //     const err = new Error('Please provide a text key')
+    //     err.status = 422
+    //     next(err)
+    //   } else {
+    //     checkText(data.text)
+    //   }
+    // }
 
     const checkText = (text) => {
       let [code, name] = text.split(':')
@@ -62,8 +62,9 @@ router
             res.send( confirmUserUpdated(user) )
         })
       }
-      
-      checkBody(req.body)
+
+      // checkBody(req.body)
+      checkText(req.body.text)
   })
 
 module.exports = router
