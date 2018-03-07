@@ -23,8 +23,8 @@ router
       console.log(JSONresponse.body,"JSONRESPONSE ln23")
       console.log(JSONresponse.text,"JSONRESPONSE ln24")
 
-      if (!JSONresponse.ok){
-        res.send("Error encountered: \n"+JSON.stringify(JSONresponse))
+      if (!JSONresponse.text.ok){
+        res.send("Error encountered: \n"+JSONresponse)
         // .status(200).end()
       } else {
         console.log(JSONresponse.text,"JSONRESPONSE ln24")
