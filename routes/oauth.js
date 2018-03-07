@@ -4,6 +4,8 @@ const request = require('superagent')
 router
   .get('/api/oauth', (req, res, next) => {
     console.log("IN OAUTH")
+    console.log(req.query,"QUERY")
+    console.log(req,"REQ")
     let options = {
       uri: 'https://slack.com/api/oauth.access?code=' +
         req.query.code +
