@@ -18,16 +18,15 @@ router
     .get(options)
     .then((response) => {
       console.log(Object.keys(response),"RESPONSE")
-      var JSONresponse = response
+      var JSONresponse = JSON.parse(response.text)
       console.log(JSONresponse.ok,"JSONRESPONSE ln22")
-      console.log(JSONresponse.body,"JSONRESPONSE ln23")
-      console.log(JSONresponse.text,"JSONRESPONSE ln24")
+      console.log(response.body,"JSONRESPONSE ln23")
+      console.log(response.text,"JSONRESPONSE ln24")
 
-      if (!JSONresponse.text.ok){
-        res.send("Error encountered: \n"+JSONresponse)
-        // .status(200).end()
+      if (!JSONresponse.ok){
+        res.send("Error encountered: \n"+JSON.stringify(JSONresponse))
       } else {
-        console.log(JSONresponse.text,"JSONRESPONSE ln24")
+        console.log(JSONresponse,"JSONRESPONSE ln24")
         res.send("Success!")
       }
     })
