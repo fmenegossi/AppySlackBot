@@ -9,6 +9,7 @@ router
     const checkText = (body) => {
       if (body.text === '' || body.text === undefined) {
 
+
         fetchList()
         return
       }else{
@@ -25,7 +26,6 @@ router
       }
 
     }
-
 
     const fetchList = () => {
       SapUser.find()
