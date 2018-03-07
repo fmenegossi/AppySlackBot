@@ -18,7 +18,7 @@ router
     const checkText = (text) => {
       let [code, name] = text.split(':')
       if (!text) {
-        fetchList()
+        fetchUserList()
       } else if(!name || !code) {
         const err = new Error('User and/or Code not present!')
         res.send('User and/or Code not present!')
@@ -28,8 +28,7 @@ router
       }
     }
 
-
-    const fetchList = () => {
+    const fetchUserList = () => {
       SapUser.find()
       .then((users) => {
         res.send(fetchUserList(users))
@@ -63,6 +62,7 @@ router
             res.send( confirmUserUpdated(user) )
         })
       }
+      
       checkBody(req.body)
   })
 
