@@ -5,17 +5,16 @@ router
   .get('/api/oauth', (req, res, next) => {
     console.log("IN OAUTH")
     console.log(req.query,"QUERY")
-    console.log(req,"REQ")
-    let options = {
-      uri: 'https://slack.com/api/oauth.access?code=' +
+    let options = ('https://slack.com/api/oauth.access?code=' +
         req.query.code +
         '&client_id=' + process.env.CLIENT_ID +
         '&client_secret=' + process.env.CLIENT_SECRET +
-        '&redirect_uri=' + process.env.REDIRECT_URI,
-      method: 'GET'
-    }
+        '&redirect_uri=' + process.env.REDIRECT_URI)
+
     console.log(options,"OPTIONS")
-    request(options, (error, response, body) => {
+    request
+    .get(options)
+    .then((error, response, body) => {
       console.log(body,"BODY")
       console.log(response,"RESPONSE")
 
