@@ -12,17 +12,20 @@ router
         '&redirect_uri=' + process.env.REDIRECT_URI,
       method: 'GET'
     }
+    console.log(options,"OPTIONS")
     request(options, (error, response, body) => {
-      console.log(body)
+      console.log(body,"BODY")
+      console.log(response,"RESPONSE")
+
       var JSONresponse = JSON.parse(body)
       if (!JSONresponse.ok){
-        console.log(JSONresponse)
+        console.log(JSONresponse,"JSONRESPONSE ln19")
         res.send("Error encountered: \n"+JSON.stringify(JSONresponse)).status(200).end()
       } else {
-        console.log(JSONresponse)
+        console.log(JSONresponse,"JSONRESPONSE ln22")
         res.send("Success!")
       }
     })
-  })  
+  })
 
 module.exports = router
