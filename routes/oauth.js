@@ -14,10 +14,9 @@ router
     console.log(options,"OPTIONS")
     request
     .get(options)
-    .then((response, body) => {
-      console.log(body,"BODY")
+    .then((response) => {
       console.log(response,"RESPONSE")
-      var JSONresponse = JSON.parse(body)
+      var JSONresponse = JSON.parse(response)
       if (!JSONresponse.ok){
         console.log(JSONresponse,"JSONRESPONSE ln19")
         res.send("Error encountered: \n"+JSON.stringify(JSONresponse)).status(200).end()
