@@ -15,7 +15,7 @@ const platform = require('./routes/platform')
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
-  //.use(verificationToken)
+  .use(verificationToken)
   .use(slashRouter)
   .use(blankRoot)
   .use(sapUser)
