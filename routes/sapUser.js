@@ -1,23 +1,23 @@
 const router = require('express').Router()
 const SapUser = require('../models/sapUser')
-const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../lib/messages.js')
+const { generalMsg } = require('../lib/messages.js')
 
 router
   .post('/api/sapuser', (req, res, next) => {
 
     console.log('sapuser')
-    const checkText = (text) => {
-      if (text.text === '' || text.text === undefined) {
-        console.log('no text')
+    const checkText = (body) => {
+      if (body.text === '' || body.text === undefined) {
+
         fetchList()
         return
       }else{
-        console.log('yes text',text)
-        let [code, name] = text.text.split(':')
+
+        let [code, name] = body.text.split(':')
 
         if(!name || !code) {
           const err = new Error('User and/or Code not present!')
-          res.send('User and/or Code not present!')
+          res.send( generalMsg( { "msg" : "nameOrCodeNotPresent" } ) )
         } else {
           console.log(code, name)
           checkUser(code, name)
@@ -30,7 +30,7 @@ router
     const fetchList = () => {
       SapUser.find()
       .then((users) => {
-        res.send(fetchUserList(users))
+        res.send( generalMsg({"msg" : "fetchUserList" , "data" : users } ) )
       })
     }
 
@@ -51,14 +51,14 @@ router
       const createUser = (code, name ) => {
         SapUser.create({name: name, code: code}, (error, user) => {
           if(error) { next(error) }
-          res.send( confirmUserCreated(user) )
+          res.send( generalMsg({"msg" : "confirmUserCreated" , "data" : user } ) )
         })
       }
 
       const updateUser = (code, name, sapUser ) => {
         SapUser.findByIdAndUpdate(sapUser._id, {name: name}, { new: true })
           .then((user) => {
-            res.send( confirmUserUpdated(user) )
+            res.send( generalMsg({"msg" : "confirmUserUpdated" , "data" : user } ) )
         })
       }
       checkText(req.body)
