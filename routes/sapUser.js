@@ -6,14 +6,14 @@ router
   .post('/api/sapuser', (req, res, next) => {
 
     console.log('sapuser')
-    const checkText = (text) => {
-      if (text.text === '' || text.text === undefined) {
+    const checkText = (body) => {
+      if (body.text === '' || body.text === undefined) {
         console.log('no text')
         fetchList()
         return
       }else{
-        console.log('yes text',text)
-        let [code, name] = text.text.split(':')
+        console.log('yes text',body)
+        let [code, name] = body.text.split(':')
 
         if(!name || !code) {
           const err = new Error('User and/or Code not present!')
@@ -25,7 +25,6 @@ router
       }
 
     }
-
 
     const fetchList = () => {
       SapUser.find()
