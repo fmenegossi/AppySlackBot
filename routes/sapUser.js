@@ -5,27 +5,25 @@ const { confirmUserCreated , confirmUserUpdated, fetchUserList } = require('../l
 router
   .post('/api/sapuser', (req, res, next) => {
 
-    const checkBody = (data) => {
-      if (data.text===undefined) {
-        const err = new Error('Please provide a text key')
-        err.status = 422
-        next(err)
-      } else {
-        checkText(data.text)
-      }
-    }
-
+    console.log('sapuser')
     const checkText = (text) => {
-      let [code, name] = text.split(':')
-      if (!text) {
+      if (text.text === '' || text.text === undefined) {
+        console.log('no text')
         fetchList()
-      } else if(!name || !code) {
-        const err = new Error('User and/or Code not present!')
-        res.send('User and/or Code not present!')
-      } else {
-        console.log(code, name)
-        checkUser(code, name)
+        return
+      }else{
+        console.log('yes text',text)
+        let [code, name] = text.text.split(':')
+
+        if(!name || !code) {
+          const err = new Error('User and/or Code not present!')
+          res.send('User and/or Code not present!')
+        } else {
+          console.log(code, name)
+          checkUser(code, name)
+        }
       }
+
     }
 
 
@@ -63,7 +61,7 @@ router
             res.send( confirmUserUpdated(user) )
         })
       }
-      checkBody(req.body)
+      checkText(req.body)
   })
 
 module.exports = router
