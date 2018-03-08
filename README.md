@@ -4,7 +4,7 @@
 
 ``` /apistatus list ```
 
- *gets a list of all apis available *
+*gets a list of all apis available*
 
 
 ``` /apistatus {"name":"ApiName", "platformName":"PlatformName"} ```
