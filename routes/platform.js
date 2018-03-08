@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { Platform } = require('../models')
-const { generalMsg } = require('../lib/messages')
+const { generalMsg }  = require('../lib/messages')
 const isJson = require('../lib/jsonCheck')
 
 
@@ -25,9 +25,7 @@ router
     }
 
     const findPlatform = (data) => {
-      Platform.findOne({
-          name: data.name
-        })
+      Platform.findOne({ name: data.name })
         .then((platform) => {
           if (!platform) {
             createPlatform(data)
