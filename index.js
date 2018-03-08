@@ -20,7 +20,7 @@ const getData = () => {
       platforms.map((platform) => {
         getApis.getApis(platform.sap_auth, platform.url)
           .then((data) => {
-            console.log('ln25:', data.d.results)
+            // console.log('ln25:', data.d.results)
             readData(data, platform.name)
           })
       })

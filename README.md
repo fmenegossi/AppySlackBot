@@ -1,31 +1,30 @@
 # AppySlackBot
 
-Available Slack Commands:
+## Available Slack Commands:
 
-/apistatus list
+``` /apistatus list ```
 
---> gets a list of all apis available
-
-
-
-/apistatus {"name":"ApiName", "platformName":"PlatformName"}
-
---> gets details about a single api
+*gets a list of all apis available*
 
 
+``` /apistatus {"name":"ApiName", "platformName":"PlatformName"} ```
 
-/apiuser code:name
-
---> creates a new user / if code already exists updates the user
+*gets details about a single api*
 
 
 
-/apiuser
+``` /apiuser code:name ```
 
---> list of all users
+*creates a new user / if code already exists updates the user*
 
 
 
-/apiplatform {"name":"platform_name", "password":"password", "username":"email_address", "url":"platform_url"}
+``` /apiuser ```
 
---> adds a platform
+*list of all users*
+
+
+
+``` /apiplatform {"name":"platform_name", "password":"password", "username":"email_address", "url":"platform_url"} ```
+
+*adds a platform*

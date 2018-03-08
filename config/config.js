@@ -9,12 +9,12 @@ const SUCCESS_COLOR = "#005D00"
 const NEUTRAL_COLOR = "#ffdd40"
 
 module.exports = {
-       TOKEN_URL ,
-       DATA_URL,
-       SLACKBOT_URL,
-       INTERVAL,
-       SLASH_TOKEN,
-       SUCCESS_COLOR,
-       WARNING_COLOR,
-       NEUTRAL_COLOR
-     }
+  TOKEN_URL ,
+  DATA_URL,
+  SLACKBOT_URL,
+  INTERVAL,
+  SLASH_TOKEN,
+  SUCCESS_COLOR,
+  WARNING_COLOR,
+  NEUTRAL_COLOR
+ }

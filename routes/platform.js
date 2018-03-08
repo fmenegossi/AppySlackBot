@@ -66,7 +66,7 @@ router
       }
 
       Platform.findByIdAndUpdate(platform._id,
-        { patchedPlatform },
+        { $set: patchedPlatform },
         { new: true })
         .then((platform) => {
           res.send(generalMsg({ name: platform.name, msg: "changedPlatform" }))
