@@ -38,11 +38,11 @@ router
     }
 
     const createPlatform = (data) => {
+      const basicAuthString = Buffer.from(`${data.username}:${data.password}`).toString('base64')
       const newPlatform = {
         name: data.name,
         url: data.url,
-        username: data.username,
-        password: data.password
+        sap_auth: basicAuthString
       }
 
       Platform.create(newPlatform, (error, platform) => {
@@ -64,11 +64,9 @@ router
         ...platformUpdates
       }
 
-      Platform.findByIdAndUpdate(platform._id, {
-          patchedPlatform
-        }, {
-          new: true
-        })
+      Platform.findByIdAndUpdate(platform._id,
+        { patchedPlatform },
+        { new: true })
         .then((platform) => {
           res.send(platform)
         })
