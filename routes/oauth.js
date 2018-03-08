@@ -26,7 +26,7 @@ router
       if (!JSONresponse.ok){
         res.send("Error encountered: \n"+JSON.stringify(JSONresponse))
       } else {
-        SlackWorkspace.findOne(name:body.team_name)
+        SlackWorkspace.findOne({name:body.team_name})
         .then((resultSlack) => {
           if(!resultSlack){
             console.log("CREATE")

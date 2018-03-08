@@ -6,4 +6,4 @@ const slackSchema = new Schema({
   webHook: { type: String, required: true }
 })
 
-module.exports = mongoose.model('platforms', slackSchema)
+module.exports = mongoose.model('slacks', slackSchema)
