@@ -49,7 +49,8 @@ router
         if (error) {
           next(error)
         }
-        res.send(platform)
+
+        res.send(generalMsg({ name: platform.name, msg: "addedPlatform" }))
       })
     }
 
@@ -68,7 +69,7 @@ router
         { patchedPlatform },
         { new: true })
         .then((platform) => {
-          res.send(platform)
+          res.send(generalMsg({ name: platform.name, msg: "changedPlatform" }))
         })
     }
 
