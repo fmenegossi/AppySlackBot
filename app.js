@@ -11,11 +11,13 @@ const blankRoot = require('./routes/blankRoot')
 const verificationToken = require('./lib/verificationToken')
 const sapUser = require('./routes/sapUser')
 const platform = require('./routes/platform')
+const oauth = require('./routes/oauth')
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   .use(verificationToken)
+  .use(oauth)
   .use(slashRouter)
   .use(blankRoot)
   .use(sapUser)
