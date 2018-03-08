@@ -19,9 +19,10 @@ router
     .then((response) => {
       console.log(Object.keys(response),"RESPONSE")
       var JSONresponse = JSON.parse(response.text)
-      console.log(JSONresponse.ok,"JSONRESPONSE ln22")
-      console.log(response.body,"JSONRESPONSE ln23")
-      console.log(response.text,"JSONRESPONSE ln24")
+      console.log(Object.keys(response,"RESPONSE ln22"))
+      console.log(JSONresponse.ok,"JSONRESPONSE ln23")
+      console.log(response.body,"JSONRESPONSE ln24")
+      console.log(response.text,"JSONRESPONSE ln25")
 
       if (!JSONresponse.ok){
         res.send("Error encountered: \n"+JSON.stringify(JSONresponse))
