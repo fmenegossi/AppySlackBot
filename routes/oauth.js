@@ -31,9 +31,11 @@ router
           if(!resultSlack){
             console.log("CREATE")
             SlackWorkspace.create({name:body.team_name,webHook:body.incoming_webhook.url})
+            res.send('added new slack')
           } else {
             console.log("UPDATE")
             SlackWorkspace.findByIdAndUpdate(resultSlack._id,{webHook: body.incoming_webhook.url}, { new: true })
+            res.send('updated slack')
           }
         })
       }
