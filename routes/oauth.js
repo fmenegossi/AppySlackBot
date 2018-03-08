@@ -32,13 +32,13 @@ router
             console.log("CREATE")
             SlackWorkspace.create({name:body.team_name,webHook:body.incoming_webhook.url}, (error, slack) => {
               if(error) { res.send(error) }
-              else { res.send(slack,'created slack')  }
+              else { res.send(JSON.stringify(slack),'created slack')  }
             })
           } else {
             console.log("UPDATE")
             SlackWorkspace.findByIdAndUpdate(resultSlack._id,{webHook:body.incoming_webhook.url}, { new: true }, (error, slack) => {
               if(error) { res.send(error) }
-              else { res.send(slack,'updated slack')  }
+              else { res.send(JSON.stringify(slack),'updated slack')  }
             })
           }
         })
